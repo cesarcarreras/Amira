@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-const http = require('http');
-const app = require('../app');
+import http from "http"
+import * as app from "../app.js"
 
 app.use((req, res, next) => {
   res.status(404).json({ msg: 'Not Found' });
