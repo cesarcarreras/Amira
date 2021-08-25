@@ -11,7 +11,7 @@ cloudinary.config({
 });
 
 //Configure storage on Cloudinary
-const storage= new CloudinaryStorage({
+const storage = new CloudinaryStorage({
     cloudinary,
     params: (req, file) => {
         return{
