@@ -1,13 +1,14 @@
-const Product = require('../models/Products');
+const Product = require('../models/Product');
 
 exports.createProduct = (req, res) => {
-    Product.Create({...req.body})
+    const img = req.files.map( field => field.path)
+    Product.create({...req.body, img})
     .then(product => res.status(200).json({product}))
     .catch(err => res.status(500).json({err}))
 };
 
 exports.getAllProducts = (req, res) => {
-    Product.find()
+    Products.find()
     .then(products => res.status(200).json({products}))
     .catch(err => res.status(500).json({err}))
 };

@@ -2,8 +2,6 @@
   "name": "backend",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
-  "main": "./bin/www.js",
   "scripts": {
     "start": "node --experimental-modules ./bin/www",
     "dev": "DEBUG=backend:* nodemon ./bin/www",

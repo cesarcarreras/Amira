@@ -1,14 +1,13 @@
-import dotenv from 'dotenv'
-dotenv.config();
+require('dotenv').config();
 
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import express from 'express';
-import mongoose from 'mongoose';
-import logger from 'morgan';
-import path from 'path';
-import cors from 'cors';
-import passport from 'passport';
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const express = require('express');
+const mongoose = require('mongoose');
+const logger = require('morgan');
+const path = require('path');
+const cors = require('cors');
+const passport = require('./helpers/passport');
 
 mongoose
   .connect(process.env.DB, {
@@ -19,7 +18,7 @@ mongoose
   .then((x) => console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`))
   .catch((err) => console.error('Error connecting to mongo', err));
 
-import app_name from './package.json';
+const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
 
 const app = express();
