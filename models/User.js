@@ -5,7 +5,10 @@ const userSchema = new Schema({
     email: String,
     name: String,
     birthday: Date,
-    img: String,
+    img: {
+        type: String,
+        default: "https://res.cloudinary.com/wbnkfjbkjf/image/upload/v1630041033/Chip/user_ltpqid.png"
+    },
     role: {
         type: String,
         enum: ['ADMIN', 'USER'],
