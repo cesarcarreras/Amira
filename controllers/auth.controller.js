@@ -15,22 +15,20 @@ exports.signUp = (req, res, next) => {
     const user = req.body
     User.register({...user}, user.password)
     .then(user => res.status(201).json({user}))
-    .catch(err => res.status(500).json({err}))
+    .catch(error => res.status(500).json({error}))
 
     const recipients = [
-        new Recipient(req.body.email)
+        new Recipient(user.email)
     ];
 
     const variables = [
         {
-            email: req.body.email,
+            email: user.email,
             substitutions:
             [
-                {var: "email", value: req.body.email},
+                {var: "email", value: user.email},
             ]}
         ];
-
-        console.log("que es esto:", req.body)
 
       const emailParams = new EmailParams()
       .setFrom("cesar@cesarcarreras.com")

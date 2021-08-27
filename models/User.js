@@ -2,8 +2,8 @@ const {Schema, model} = require('mongoose');
 const PLM = require('passport-local-mongoose');
 
 const userSchema = new Schema({
-    email: String,
     name: String,
+    email: String,
     birthday: Date,
     img: {
         type: String,
@@ -19,10 +19,10 @@ const userSchema = new Schema({
         enum: ['ACTIVE', 'UNCONFIRMED'],
         default: 'UNCONFIRMED'
     },
-    confirmationCode: {
-        type: String,
-        unique: true,
-    },
+    // confirmationCode: {
+    //     type: String,
+    //     unique: true,
+    // },
     googleId: String
 }, {timestamps:true, versionKey: false})
 
