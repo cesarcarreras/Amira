@@ -14,11 +14,11 @@ const userSchema = new Schema({
         enum: ['ADMIN', 'USER'],
         default: 'USER'
     },
-    status: {
-        type: String,
-        enum: ['ACTIVE', 'UNCONFIRMED'],
-        default: 'UNCONFIRMED'
-    },
+    // status: {
+    //     type: String,
+    //     enum: ['ACTIVE', 'UNCONFIRMED'],
+    //     default: 'UNCONFIRMED'
+    // },
     // confirmationCode: {
     //     type: String,
     //     unique: true,

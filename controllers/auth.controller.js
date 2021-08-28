@@ -12,10 +12,19 @@ const mailersend = new MailerSend({
 
 
 exports.signUp = (req, res, next) => {
+
     const user = req.body
-    User.register({...user}, user.password)
-    .then(user => res.status(201).json({user}))
+    User.register(user, user.password)
+    .then(user => {
+        console.log(user)
+        try{
+            req.login(user, () => res.json({user: req.user}))
+        }catch(error){
+            console.log(error)
+    }
+    })
     .catch(error => res.status(500).json({error}))
+
 
     const recipients = [
         new Recipient(user.email)
