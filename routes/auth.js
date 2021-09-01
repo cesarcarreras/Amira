@@ -6,7 +6,7 @@ const {
     login,
     loggedUser,
     logout,
-    confirmationCode,
+    // confirmationCode,
     googleInit,
     googleCallback } = require('../controllers/auth.controller');
 
@@ -15,7 +15,7 @@ router.post('/login', passport.authenticate('local'), login);
 router.get('/logged-in', verifyToken, loggedUser);
 router.get('/logout', logout);
 // router.post('/edit/:id', editProcess);
-router.get("/confirm/:confirmationCode", confirmationCode);
+// router.get("/confirm/:confirmationCode", confirmationCode);
 router.get('/google', googleInit);
 router.get('/google/callback', googleCallback);
 
