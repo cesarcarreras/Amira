@@ -7,6 +7,7 @@ const productSchema = new Schema({
     img: {
         type: [String]
     },
+    featured : Boolean,
     stock: Boolean,
     discount: Number,
     url: String,
