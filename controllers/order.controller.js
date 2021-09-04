@@ -1,11 +1,10 @@
 const Order = require('../models/Order');
 
 exports.createOrder = (req, res) => {
-    let {orderNumber} = req.params
-
+    let orderNumber = 'ID'
     const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
     for (let i = 0; i < 10; i++) {
-        orderNumber += characters[Math.floor(Math.random() * characters.length )];
+        orderNumber += characters[Math.floor(Math.random() * characters.length )]
     }
 
     Order.create({...req.body, orderNumber})
@@ -28,7 +27,7 @@ exports.oneOrder = (req, res) => {
 
 exports.updateOrder = (req, res) => {
     const {id} = req.params
-    Order.findByIdandUpdate(id, {...req.body}, {new:true})
+    Order.findByIdAndUpdate(id, {...req.body}, {new:true})
     .then(order => res.status(200).json({order}))
     .catch(err => res.status(500).json({err}))
 };

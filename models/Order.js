@@ -1,7 +1,7 @@
 const {Schema, model} = require('mongoose');
 
 const orderSchema = new Schema({
-    orderNumber: {type: String, default: 'ID'},
+    orderNumber: String,
     notes: String,
     total: Number,
     status: {type: String, enum: ['NEW', 'CONFIRMED', 'ON DELIVERY', 'CANCELED','COMPLETED'], default:'NEW'},
