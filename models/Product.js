@@ -9,7 +9,7 @@ const productSchema = new Schema({
     },
     featured : Boolean,
     stock: Boolean,
-    discount: Number,
+    price: Number,
     url: String,
     available: {type: Boolean, default: false}
 },{

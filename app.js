@@ -39,12 +39,18 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(logger('dev'));
 
-const indexRoutes = require('./routes/index');
+
+
 const authRoutes = require('./routes/auth');
-const productRoutes = require('./routes/product')
+const userRoutes = require('./routes/user');
+const indexRoutes = require('./routes/index');
+const orderRoutes = require('./routes/order');
+const productRoutes = require('./routes/product');
 
 app.use('/api', indexRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/orders', orderRoutes);
 app.use('/api/products', productRoutes);
 
 // Uncomment this line for production

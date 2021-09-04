@@ -68,18 +68,6 @@ exports.login = (req, res, next) => {
     res.status(201).json({user})
 };
 
-exports.confirmationCode = async (req, res, next) => {
-    const {confirmationCode} = req.params
-    try{
-        const user = await User.findByIdAndUpdate({confirmationCode}, {status: "ACTIVE"}, {new:true})
-        console.log("user :", user)
-        // res.redirect('http://localhost:3000/confirmation-page');
-        res.status(200).json({result : user, msg: "Congrats, the user is now active"})
-    } catch(error){
-        res.status(400).json({error})
-    }
-};
-
 exports.loggedUser = (req, res, next) => {
     const {user} = req
     res.status(200).json({user})
