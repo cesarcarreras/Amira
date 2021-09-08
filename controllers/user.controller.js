@@ -12,3 +12,16 @@ exports.updateUser = (req, res) => {
     .then(user => res.status(200).json({user}))
     .catch(err => res.status(500).json({err}))
 };
+
+exports.createUser = (req, res) => {
+    User.create({...req.body})
+    .then(user => res.status(200).json({user}))
+    .catch(err => res.status(500).json({err}))
+};
+
+exports.deleteUser = (req, res) => {
+    const {id} = req.params
+    User.findByIdAndDelete(id)
+    .then( () => res.status(200).json({msg: "Usuario borrado con éxito"}))
+    .catch(err => res.status(500).json({err}))
+};

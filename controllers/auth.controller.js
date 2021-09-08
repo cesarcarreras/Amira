@@ -16,7 +16,6 @@ exports.signUp = (req, res, next) => {
     const user = req.body
     User.register(user, user.password)
     .then(user => {
-        console.log(user)
         try{
             req.login(user, () => res.json({user: req.user}))
         }catch(error){
