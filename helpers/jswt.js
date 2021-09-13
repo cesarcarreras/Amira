@@ -12,7 +12,9 @@ exports.createToken = (user) => {
 exports.verifyToken = (req, res, next) => {
     const {headload, signature} = req.cookies
 
-    if(!headload || !signature) res.status(401).json({msg: 'No tienes un token válido'})
+    if(!headload || !signature){
+        return res.status(401).json({msg: 'No tienes un token válido'})
+    }
     jswt.verify(`${headload}.${signature}`, process.env.SECRET, (error, decoded) => {
         if(error) res.status(401).json({msg: 'No tienes un token válido'})
         User.findById(decoded.userId)

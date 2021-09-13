@@ -7,6 +7,7 @@ const userSchema = new Schema({
     email: String,
     purchases: String,
     birthday: Date,
+    address: String,
     img: {
         type: String,
         default: "https://res.cloudinary.com/wbnkfjbkjf/image/upload/v1630041033/Chip/user_ltpqid.png"

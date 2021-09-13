@@ -14,10 +14,22 @@ const mailersend = new MailerSend({
 exports.signUp = (req, res, next) => {
 
     const user = req.body
+    const [header, payload, signature] = createToken(user)
     User.register(user, user.password)
     .then(user => {
         try{
-            req.login(user, () => res.json({user: req.user}))
+            res.cookie('headload', `${header}.${payload}`, {
+                maxAge: 1000 * 60 * 30,
+                httpOnly: true,
+                sameSite: true
+            })
+
+            res.cookie('signature', signature, {
+                httpOnly: true,
+                sameSite: true
+            })
+
+            res.status(201).json(user)
         }catch(error){
             console.log(error)
     }
@@ -68,7 +80,7 @@ exports.login = (req, res, next) => {
 };
 
 exports.loggedUser = (req, res, next) => {
-    const {user} = req
+    const {user} = req.body
     res.status(200).json({user})
 };
 

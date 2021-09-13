@@ -4,7 +4,7 @@ const orderSchema = new Schema({
     orderNumber: String,
     notes: String,
     total: Number,
-    status: {type: String, enum: ['NEW', 'CONFIRMED', 'ON DELIVERY', 'CANCELED','COMPLETED'], default:'NEW'},
+    status: {type: String, enum: ['PENDING', 'PAID', 'CONFIRMED', 'ON DELIVERY', 'CANCELED','COMPLETED'], default:'NEW'},
     _user: {type: Schema.Types.ObjectId, ref:"User", required: [true, "Un pedido requiere un cliente"]},
     _product: {type: Schema.Types.ObjectId, ref: "Product", required: [true, "Un pedido require un producto"]}
 },{

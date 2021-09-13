@@ -37,7 +37,7 @@ exports.updateOrder = (req, res) => {
 exports.deleteOrder = (req, res) => {
     const {id} = req.params
     Order.findByIdAndRemove(id)
-    .then(order => res.status(200).json({msg: "Pedido borrado con éxito"}))
+    .then( () => res.status(200).json({msg: "Pedido borrado con éxito"}))
     .catch(err => res.status(500).json({err}))
 };
 
