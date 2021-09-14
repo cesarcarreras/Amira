@@ -40,7 +40,7 @@ app.use(cookieParser());
 app.use(logger('dev'));
 
 
-
+const mpRoutes = require('./routes/mp');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const indexRoutes = require('./routes/index');
@@ -51,6 +51,7 @@ app.use('/api', indexRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/mercadopago', mpRoutes);
 app.use('/api/products', productRoutes);
 
 // Uncomment this line for production
