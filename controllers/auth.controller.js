@@ -80,7 +80,7 @@ exports.login = (req, res, next) => {
 };
 
 exports.loggedUser = (req, res, next) => {
-    const {user} = req.body
+    const {user} = req
     res.status(200).json({user})
 };
 

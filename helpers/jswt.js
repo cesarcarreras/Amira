@@ -11,7 +11,6 @@ exports.createToken = (user) => {
 
 exports.verifyToken = (req, res, next) => {
     const {headload, signature} = req.cookies
-
     if(!headload || !signature){
         return res.status(401).json({msg: 'No tienes un token válido'})
     }

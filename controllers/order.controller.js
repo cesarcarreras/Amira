@@ -8,7 +8,7 @@ exports.createOrder = (req, res) => {
     }
 
     Order.create({...req.body, orderNumber})
-    .then(order => res.status(200).json({order}))
+    .then(order => res.status(200).json(order))
     .catch(err => res.status(500).json({err}))
 };
 
