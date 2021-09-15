@@ -5,7 +5,7 @@
     <img src="./public/images/logo.png" alt="Logo" width="560" height="230">
   </a>
 
-  <h1 align="center">Amira Soap</h1>
+  <h1 align="center">Amira Soap - Backend</h1>
 
   <p align="center">
    ¡Gracias por visitar este grandioso proyecto!
