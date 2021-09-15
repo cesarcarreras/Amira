@@ -4,9 +4,12 @@ const productSchema = new Schema({
     title: String,
     description: String,
     category: {type: String, enum: ['CAT1', 'CAT2', 'CAT3', 'CAT4', 'CAT5', 'CAT6']},
-    img: [String],
+    img: {
+        type: [String]
+    },
+    featured : Boolean,
     stock: Boolean,
-    discount: Number,
+    price: Number,
     url: String,
     available: {type: Boolean, default: false}
 },{
@@ -14,4 +17,4 @@ const productSchema = new Schema({
     versionKey: false
 });
 
-module.exports= model('Product', productSchema);
+module.exports = model('Product', productSchema);

@@ -1,7 +1,8 @@
-const Product = require('../models/Products');
+const Product = require('../models/Product');
 
 exports.createProduct = (req, res) => {
-    Product.Create({...req.body})
+    const img = req.files.map( field => field.path)
+    Product.create({...req.body, img})
     .then(product => res.status(200).json({product}))
     .catch(err => res.status(500).json({err}))
 };
@@ -21,14 +22,14 @@ exports.oneProduct = (req, res) => {
 
 exports.updateProduct = (req, res) => {
     const {id} = req.params
-    Product.findByIdandUpdate(id, {...req.body}, {new:true})
+    Product.findByIdAndUpdate(id, {...req.body}, {new:true})
     .then(product => res.status(200).json({product}))
     .catch(err => res.status(500).json({err}))
 };
 
 exports.deleteProduct = (req, res) => {
     const {id} = req.params
-    Product.findByIdandDelete(id)
+    Product.findByIdAndDelete(id)
     .then(product => res.status(200).json({product}))
     .catch(err => res.status(500).json({err}))
 };

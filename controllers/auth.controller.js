@@ -12,25 +12,43 @@ const mailersend = new MailerSend({
 
 
 exports.signUp = (req, res, next) => {
+
     const user = req.body
-    User.register({...user}, user.password)
-    .then(user => res.status(201).json({user}))
-    .catch(err => res.status(500).json({err}))
+    const [header, payload, signature] = createToken(user)
+    User.register(user, user.password)
+    .then(user => {
+        try{
+            res.cookie('headload', `${header}.${payload}`, {
+                maxAge: 1000 * 60 * 30,
+                httpOnly: true,
+                sameSite: true
+            })
+
+            res.cookie('signature', signature, {
+                httpOnly: true,
+                sameSite: true
+            })
+
+            res.status(201).json(user)
+        }catch(error){
+            console.log(error)
+    }
+    })
+    .catch(error => res.status(500).json({error}))
+
 
     const recipients = [
-        new Recipient(req.body.email)
+        new Recipient(user.email)
     ];
 
     const variables = [
         {
-            email: req.body.email,
+            email: user.email,
             substitutions:
             [
-                {var: "email", value: req.body.email},
+                {var: "email", value: user.email},
             ]}
         ];
-
-        console.log("que es esto:", req.body)
 
       const emailParams = new EmailParams()
       .setFrom("cesar@cesarcarreras.com")
@@ -59,18 +77,6 @@ exports.login = (req, res, next) => {
     })
 
     res.status(201).json({user})
-};
-
-exports.confirmationCode = async (req, res, next) => {
-    const {confirmationCode} = req.params
-    try{
-        const user = await User.findByIdAndUpdate({confirmationCode}, {status: "ACTIVE"}, {new:true})
-        console.log("user :", user)
-        // res.redirect('http://localhost:3000/confirmation-page');
-        res.status(200).json({result : user, msg: "Congrats, the user is now active"})
-    } catch(error){
-        res.status(400).json({error})
-    }
 };
 
 exports.loggedUser = (req, res, next) => {
