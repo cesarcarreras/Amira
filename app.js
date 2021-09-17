@@ -53,6 +53,6 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/products', productRoutes);
 
 // Uncomment this line for production
-// app.get('/*', (req, res) => res.sendFile(__dirname + '/public/index.html'));
+app.get('/*', (req, res) => res.sendFile(__dirname + '/public/index.html'));
 
 module.exports = app;
