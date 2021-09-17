@@ -37,7 +37,10 @@ exports.oneOrder = async (req, res) => {
         const {id} = req.params
         const newOrder = await Order.findById(id)
         .populate('_user', 'name lastName phone address email')
-        res.status(200).json({newOrder})
+
+        Order.findByIdAndUpdate(id, {...req.body, status: "PAID"}, {new:true})
+        .then((updatedOrder) => res.status(200).json({updatedOrder}))
+        .catch(err => console.log(err))
 
         const recipients = [
             new Recipient(newOrder._user.email)
@@ -56,10 +59,10 @@ exports.oneOrder = async (req, res) => {
                     {var: "products", value: newOrder._products.length.toString()},
                     {var: "orderNumber", value: newOrder.orderNumber},
                     {var: "total", value: newOrder.total.toString()},
-                    {var: "iva", value: newOrder.IVA.toString()},
+                    {var: "iva", value: newOrder.iva.toString()},
                     {var: "status", value: newOrder.status},
                     {var: "orderID", value: newOrder._id},
-                    {var: "date", value: new Date().toISOString().slice(0, 10)},
+                    {var: "date", value: new Date().toString().slice(0, 10)},
                     {var: "shippingPrice", value: newOrder.shippingPrice.toString()}
                 ]}
             ];
@@ -74,8 +77,8 @@ exports.oneOrder = async (req, res) => {
 
             setTimeout(() => {
                 mailersend.send(emailParams)
-            }, 4000)
-
+            }, 5000)
+        res.status(200).json({newOrder})
     } catch (err) {
         res.status(500).json({err})
     }
