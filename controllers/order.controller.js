@@ -84,13 +84,6 @@ exports.oneOrder = async (req, res) => {
     }
 };
 
-exports.findOrder = (req, res) => {
-    const {id} = req.params
-    Order.findByIdAndUpdate(id, {...req.body}, {new:true})
-    .then(order => res.status(200).json({order}))
-    .catch(err => res.status(500).json({err}))
-};
-
 exports.updateOrder = (req, res) => {
     const {id} = req.params
     Order.findByIdAndUpdate(id, {...req.body}, {new:true})
@@ -106,8 +99,8 @@ exports.deleteOrder = (req, res) => {
 };
 
 exports.trackOrder = (req, res) => {
-    const {id} = req.params
-    Order.findById(id)
-    .then(order => res.status(200).json({order}))
+    Order.find({orderNumber: {$in: [req.params.orderNumber]}})
+    .populate('_user', 'name lastName phone address email')
+    .then(orderFound => res.status(200).json({orderFound}))
     .catch(err => res.status(500).json({err}))
 };
