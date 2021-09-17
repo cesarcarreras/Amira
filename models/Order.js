@@ -3,6 +3,8 @@ const {Schema, model} = require('mongoose');
 const orderSchema = new Schema({
     orderNumber: String,
     notes: String,
+    iva: Number,
+    shippingPrice: Number,
     total: Number,
     status: {
         type: String,
