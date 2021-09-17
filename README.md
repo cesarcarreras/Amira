@@ -36,7 +36,7 @@
 <!-- ABOUT THE PROJECT -->
 ## Acerca del Proyecto
 
-  <img src="./public/images/logo.png" alt="Logo" width="560" height="230" alt="Demo Screenshot">
+  <img src="./public/media/logo.png" alt="Logo" width="560" height="230" alt="Demo Screenshot">
 
 Para este último proyecto de IronHack, he decido aportar las nuevas habilidades adquiridas a través de IronHack para pequeños negocios y específicamente el de mi madre para poder digitalizar su más reciente proyecto. 
 

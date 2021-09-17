@@ -10,7 +10,7 @@ const cors = require('cors');
 const passport = require('./helpers/passport');
 
 mongoose
-  .connect(process.env.DB, {
+  .connect(process.env.DB_PROD, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
    })
@@ -25,7 +25,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.FRONTENDPOINT, process.env.BACKENDPOINT, "https://amirasoap.herokuapp.com", 'https://api.mailersend.com/v1']
+    origin: [process.env.FRONTENDPOINT, process.env.BACKENDPOINT, "https://amirasoap.herokuapp.com", 'https://amirasoap.herokuapp.com/api']
   })
 );
 
