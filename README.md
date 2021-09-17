@@ -2,7 +2,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/cesarcarreras/">
-    <img src="./public/images/logo.png" alt="Logo" width="560" height="230">
+    <img src="./public/media/logo.png" alt="Logo" width="560" height="230">
   </a>
 
   <h1 align="center">Amira Soap - Backend</h1>
